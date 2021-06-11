@@ -1,27 +1,18 @@
-const {readFile, writeFile} = require('fs')
+const http = require('http')
 
-console.log('start');
-readFile('./module/subModule/test_1.txt','utf8',(err,result) => {
-    if(err){
-        console.log(err)
-        return
+const server = http.createServer((req,res)=>{
+    if(req.url === '/')
+    {
+        res.end('Welcome ji');
     }
-    const result_1 = result
-    readFile('./module/subModule/test_2.txt','utf8',(err,result)=>{
-        if(err){
-            console.log(err)
-            return
-        }
-        const result_2 = result
-        // console.log(`Ans is : ${result_1} ${result_2}`)
-        writeFile('./module/subModule/test.txt',`\nMy New Result is : ${result_1} ${result_2}`,{flag : 'a'},(err,result)=>{
-            if(err){
-                console.log(err)
-            }
-            console.log('Writing is done')
-        })
-    })
+    if(req.url === '/about')
+    {
+        res.end('You are in the about');
+    }
+    res.end('Error ho gy !!')
+    
 })
 
-console.log('done with task')
-console.log('starting the next')
+server.listen(5000,()=>{
+    console.log(`Server is listening....`);
+})
