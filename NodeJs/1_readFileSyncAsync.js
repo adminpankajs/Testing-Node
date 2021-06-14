@@ -14,12 +14,15 @@ readFile('./module/subModule/test_1.txt','utf8',(err,result) => {
         }
         const result_2 = result
         // console.log(`Ans is : ${result_1} ${result_2}`)
-        writeFile('./module/subModule/test.txt',`\nMy New Result is : ${result_1} ${result_2}`,{flag : 'a'},(err,result)=>{
+        for(let i=0; i<10000; i++)
+        {
+            writeFile('./module/subModule/test.txt',`\nMy New Result is : ${result_1} ${result_2}`,{flag : 'a'},(err,result)=>{
             if(err){
                 console.log(err)
             }
             console.log('Writing is done')
         })
+        }
     })
 })
 
